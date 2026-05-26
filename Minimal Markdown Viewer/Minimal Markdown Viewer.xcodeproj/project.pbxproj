@@ -10,9 +10,22 @@
 		75CE55632FC56D6400F594F2 /* Minimal Markdown Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Minimal Markdown Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7536A0472FC574BD00A7C977 /* Exceptions for "Minimal Markdown Viewer" folder in "Minimal Markdown Viewer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Minimal-Markdown-Viewer-Info.plist",
+			);
+			target = 75CE55622FC56D6400F594F2 /* Minimal Markdown Viewer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		75CE55652FC56D6400F594F2 /* Minimal Markdown Viewer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7536A0472FC574BD00A7C977 /* Exceptions for "Minimal Markdown Viewer" folder in "Minimal Markdown Viewer" target */,
+			);
 			path = "Minimal Markdown Viewer";
 			sourceTree = "<group>";
 		};
@@ -256,6 +269,7 @@
 				DEVELOPMENT_TEAM = V49MN6T826;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Minimal-Markdown-Viewer-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,6 +302,7 @@
 				DEVELOPMENT_TEAM = V49MN6T826;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Minimal-Markdown-Viewer-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
