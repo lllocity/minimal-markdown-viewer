@@ -78,7 +78,7 @@ MinimalMarkdownViewer/
 | Step 00 | [docs/step-00-xcode-install.md](./docs/step-00-xcode-install.md) | Xcode インストール（約 15GB） | 完了 ✓ |
 | Step 01 | docs/step-01-apple-id-setup.md | Apple ID を Xcode に登録・署名設定 | 完了 ✓ |
 | Step 02 | [docs/step-02-xcode-project.md](./docs/step-02-xcode-project.md) | Xcode プロジェクト作成 | 完了 ✓ |
-| Step 03 | docs/step-03-info-plist.md | Document Types / UTI 設定 | 未着手 |
+| Step 03 | [docs/step-03-info-plist.md](./docs/step-03-info-plist.md) | Document Types / UTI 設定 | 完了 ✓ |
 | Step 04 | docs/step-04-spm-swift-markdown.md | swift-markdown-ui パッケージ追加 | 未着手 |
 | Step 05 | docs/step-05-viewmodel.md | DocumentViewModel 実装 | 未着手 |
 | Step 06 | docs/step-06-markdown-view.md | MarkdownView 実装 | 未着手 |
@@ -125,4 +125,4 @@ MinimalMarkdownViewer/
 - Xcode 26.5 インストール済み（iOS 26.5 プラットフォーム選択済み）
 - Apple ID 登録済み
 - Xcode プロジェクト作成済み（`Minimal Markdown Viewer.xcodeproj`）
-- **次のアクション: Step 03（Info.plist の Document Types / UTI 設定）**
+- **次のアクション: Step 04（swift-markdown-ui パッケージ追加）**
