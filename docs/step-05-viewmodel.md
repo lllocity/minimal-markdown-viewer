@@ -135,6 +135,12 @@ Xcode はディスク上のファイルを自動では認識しない。
 
 ## よくあるエラーと対処法
 
+### 「Type 'DocumentViewModel' does not conform to protocol 'ObservableObject'」
+
+- `import Combine` が抜けている
+- `ObservableObject` と `@Published` は `Combine` フレームワークで定義されているため、`import Foundation` だけでは不足
+- ファイル先頭に `import Combine` を追加する
+
 ### 「Cannot find type 'DocumentViewModel' in scope」
 
 - ファイルがプロジェクトに追加されていない
