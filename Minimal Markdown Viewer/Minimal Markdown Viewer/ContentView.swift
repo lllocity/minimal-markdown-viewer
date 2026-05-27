@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var viewModel = DocumentViewModel()
+    @ObservedObject var viewModel: DocumentViewModel
 
     var body: some View {
         MarkdownView(viewModel: viewModel)
@@ -16,5 +16,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: DocumentViewModel())
 }

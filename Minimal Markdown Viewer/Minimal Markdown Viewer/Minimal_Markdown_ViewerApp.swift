@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct Minimal_Markdown_ViewerApp: App {
+    @StateObject private var viewModel = DocumentViewModel()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel)
+                .onOpenURL { url in
+                    viewModel.load(url: url)
+                }
         }
     }
 }
