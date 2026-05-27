@@ -83,7 +83,7 @@ MinimalMarkdownViewer/
 | Step 05 | [docs/step-05-viewmodel.md](./docs/step-05-viewmodel.md) | DocumentViewModel 実装 | 完了 ✓ |
 | Step 06 | [docs/step-06-markdown-view.md](./docs/step-06-markdown-view.md) | MarkdownView 実装 | 完了 ✓ |
 | Step 07 | [docs/step-07-app-entry.md](./docs/step-07-app-entry.md) | MDViewerApp の onOpenURL 実装 | 完了 ✓ |
-| Step 07b | [docs/step-07b-unit-tests.md](./docs/step-07b-unit-tests.md) | DocumentViewModel ユニットテスト | テストターゲット追加待ち |
+| Step 07b | [docs/step-07b-unit-tests.md](./docs/step-07b-unit-tests.md) | DocumentViewModel ユニットテスト | 完了 ✓ |
 | Step 08 | docs/step-08-simulator-test.md | シミュレータでのテスト | 未着手 |
 | Step 09 | docs/step-09-device-install.md | 実機インストール（無料アカウント） | 未着手 |
 | Step 10 | docs/step-10-google-drive-test.md | Google Drive との動作確認 | 未着手 |
@@ -126,4 +126,4 @@ MinimalMarkdownViewer/
 - Xcode 26.5 インストール済み（iOS 26.5 プラットフォーム選択済み）
 - Apple ID 登録済み
 - Xcode プロジェクト作成済み（`Minimal Markdown Viewer.xcodeproj`）
-- **次のアクション: Step 07b（Xcode にテストターゲットを追加 → ⌘+U でテスト実行）**
+- **次のアクション: Step 08（シミュレーターでのテスト）**
