@@ -81,7 +81,7 @@ MinimalMarkdownViewer/
 | Step 03 | [docs/step-03-info-plist.md](./docs/step-03-info-plist.md) | Document Types / UTI 設定 | 完了 ✓ |
 | Step 04 | [docs/step-04-spm-swift-markdown.md](./docs/step-04-spm-swift-markdown.md) | swift-markdown-ui パッケージ追加 | 完了 ✓ |
 | Step 05 | [docs/step-05-viewmodel.md](./docs/step-05-viewmodel.md) | DocumentViewModel 実装 | 完了 ✓ |
-| Step 06 | docs/step-06-markdown-view.md | MarkdownView 実装 | 未着手 |
+| Step 06 | [docs/step-06-markdown-view.md](./docs/step-06-markdown-view.md) | MarkdownView 実装 | 完了 ✓ |
 | Step 07 | docs/step-07-app-entry.md | MDViewerApp の onOpenURL 実装 | 未着手 |
 | Step 08 | docs/step-08-simulator-test.md | シミュレータでのテスト | 未着手 |
 | Step 09 | docs/step-09-device-install.md | 実機インストール（無料アカウント） | 未着手 |
@@ -125,4 +125,4 @@ MinimalMarkdownViewer/
 - Xcode 26.5 インストール済み（iOS 26.5 プラットフォーム選択済み）
 - Apple ID 登録済み
 - Xcode プロジェクト作成済み（`Minimal Markdown Viewer.xcodeproj`）
-- **次のアクション: Step 06（MarkdownView 実装）**
+- **次のアクション: Step 07（MDViewerApp の onOpenURL 実装）**
