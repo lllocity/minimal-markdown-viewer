@@ -22,12 +22,31 @@ struct MarkdownView: View {
 
                 } else if viewModel.markdownText.isEmpty {
                     // 待機状態（ファイル未読み込み）
-                    VStack(spacing: 16) {
+                    VStack(spacing: 24) {
                         Image(systemName: "doc.text")
                             .font(.largeTitle)
                             .foregroundStyle(.secondary)
                         Text("ファイルを開いてください")
                             .foregroundStyle(.secondary)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("使い方")
+                                .font(.footnote)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.secondary)
+                            Text("1. Google Drive を開く")
+                            Text("2. .md ファイルをタップ")
+                            Text("3. ⋯ → アプリで開く → このアプリを選択")
+                        }
+                        .font(.footnote)
+                        .foregroundStyle(.tertiary)
+                        Button {
+                            if let url = URL(string: "googledrive://") {
+                                UIApplication.shared.open(url)
+                            }
+                        } label: {
+                            Label("Google Drive を開く", systemImage: "arrow.up.right.square")
+                        }
+                        .buttonStyle(.bordered)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
 
