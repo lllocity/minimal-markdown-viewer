@@ -94,7 +94,7 @@ MinimalMarkdownViewer/
 | Step 07b | [docs/step-07b-unit-tests.md](./docs/step-07b-unit-tests.md) | DocumentViewModel ユニットテスト | 完了 ✓ |
 | Step 08 | [docs/step-08-simulator-test.md](./docs/step-08-simulator-test.md) | シミュレーターでのテスト | 完了 ✓ |
 | Step 09 | [docs/step-09-device-install.md](./docs/step-09-device-install.md) | 実機インストール（無料アカウント） | 完了 ✓ |
-| Step 10 | docs/step-10-google-drive-test.md | Google Drive との動作確認 | 未着手 |
+| Step 10 | [docs/step-10-google-drive-test.md](./docs/step-10-google-drive-test.md) | Google Drive との動作確認 | 完了 ✓ |
 | Step 11 | docs/step-11-appstore.md | (任意) App Store 申請 | 未着手 |
 
 ステップ完了時にこのテーブルの「状態」を `完了 ✓` に更新すること。
@@ -134,4 +134,4 @@ MinimalMarkdownViewer/
 - Xcode 26.5 インストール済み（iOS 26.5 プラットフォーム選択済み）
 - Apple ID 登録済み
 - Xcode プロジェクト作成済み（`Minimal Markdown Viewer.xcodeproj`）
-- **次のアクション: Step 10（Google Drive との動作確認）**
+- **全ステップ完了 🎉** （任意: Step 11 App Store 申請）
