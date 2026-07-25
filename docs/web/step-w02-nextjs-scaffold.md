@@ -50,6 +50,15 @@ cd web && npm run dev
 # → http://localhost:3000 が HTTP 200 を返せば成功
 ```
 
+### 5. 雛形の不要物を削除（クリーンアップ）
+create-next-app はデモ用の宣伝ページ・アセットを残すので、居残らないうちに削る。
+- 削除: `app/page.module.css`、`public/*.svg`（next/vercel/file/globe/window）、`web/README.md`
+- 書き換え:
+  - `app/layout.tsx`: `title` を本アプリ名に、`lang="ja"` に、Google Fonts（Geist）を除去（外部フォント依存を断ち **システムフォント**に）
+  - `app/page.tsx`: Vercel ロゴのデモ画面 → 最小プレースホルダ
+  - `app/globals.css`: デモ用フレックス指定を削り、白背景/ダーク自動追従 + 日本語対応システムフォントの最小リセットに
+- 検証: `npm run lint` と `npm run build` が通ること（削除物への参照が残っていないか確認）。
+
 ## 確認ポイント（どうなれば成功か）
 
 - `npm run dev` で `▲ Next.js 16.x (Turbopack) … ✓ Ready` と表示される。
