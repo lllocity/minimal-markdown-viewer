@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { auth, signIn, signOut } from "@/auth";
+import FileBrowser from "@/components/FileBrowser";
 import styles from "./page.module.css";
 
 export default async function Home() {
@@ -33,26 +35,27 @@ export default async function Home() {
     );
   }
 
-  // ログイン済み（W04 で Drive 一覧に置き換える）
+  // ログイン済み: Drive のフォルダ／Markdown をブラウズ
   return (
-    <main className={styles.center}>
-      <h1 className={styles.title}>Minimal Markdown Viewer</h1>
-      <p className={styles.lead}>
-        ログイン中: <strong>{session.user?.email}</strong>
-      </p>
-      <p className={styles.notice}>
-        次のステップ（W04）で Google Drive のフォルダ一覧をここに表示します。
-      </p>
-      <form
-        action={async () => {
-          "use server";
-          await signOut();
-        }}
-      >
-        <button type="submit" className={styles.buttonSecondary}>
-          ログアウト
-        </button>
-      </form>
-    </main>
+    <div className={styles.app}>
+      <header className={styles.header}>
+        <span className={styles.appName}>Minimal Markdown Viewer</span>
+        <span className={styles.spacer} />
+        <span className={styles.userEmail}>{session.user?.email}</span>
+        <form
+          action={async () => {
+            "use server";
+            await signOut();
+          }}
+        >
+          <button type="submit" className={styles.buttonSecondary}>
+            ログアウト
+          </button>
+        </form>
+      </header>
+      <Suspense fallback={null}>
+        <FileBrowser />
+      </Suspense>
+    </div>
   );
 }

@@ -1,0 +1,98 @@
+.browser {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.25rem;
+  font-size: 0.95rem;
+}
+
+.crumbItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sep {
+  opacity: 0.4;
+}
+
+.crumbLink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #0969da;
+  cursor: pointer;
+  font: inherit;
+}
+
+.crumbLink:hover {
+  text-decoration: underline;
+}
+
+.crumbCurrent {
+  font-weight: 600;
+}
+
+.status {
+  padding: 0.75rem 0.5rem;
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+.error {
+  padding: 0.75rem 0.5rem;
+  color: #d1242f;
+  font-size: 0.9rem;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  border: none;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.row:hover {
+  background: rgba(128, 128, 128, 0.08);
+}
+
+.file {
+  cursor: default;
+}
+
+.file:hover {
+  background: none;
+}
+
+.icon {
+  flex: none;
+  font-size: 1.1rem;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

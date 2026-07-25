@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+import { refreshGoogleAccessToken } from "@/lib/google-oauth";
 
 // 要求するスコープ: OIDC 基本情報 + Drive の閲覧のみ（読むだけ・書き込みなし）
 const GOOGLE_SCOPES = [
@@ -8,9 +9,6 @@ const GOOGLE_SCOPES = [
   "profile",
   "https://www.googleapis.com/auth/drive.readonly",
 ].join(" ");
-
-// Google のトークンエンドポイント（リフレッシュに使用）
-const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -52,34 +50,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       // 期限切れ: refresh_token で新しいアクセストークンを取得
-      try {
-        const res = await fetch(GOOGLE_TOKEN_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams({
-            client_id: process.env.AUTH_GOOGLE_ID!,
-            client_secret: process.env.AUTH_GOOGLE_SECRET!,
-            grant_type: "refresh_token",
-            refresh_token: token.refresh_token,
-          }),
-        });
-
-        const refreshed = await res.json();
-        if (!res.ok) throw refreshed;
-
-        token.access_token = refreshed.access_token;
-        token.expires_at =
-          Math.floor(Date.now() / 1000) + Number(refreshed.expires_in);
-        // Google が新しい refresh_token を返した場合のみ更新
-        if (refreshed.refresh_token) {
-          token.refresh_token = refreshed.refresh_token;
-        }
-        token.error = undefined;
-        return token;
-      } catch {
+      const refreshed = await refreshGoogleAccessToken(token.refresh_token);
+      if ("error" in refreshed) {
         token.error = "RefreshTokenError";
         return token;
       }
+      token.access_token = refreshed.access_token;
+      token.expires_at = refreshed.expires_at;
+      if (refreshed.refresh_token) {
+        token.refresh_token = refreshed.refresh_token;
+      }
+      token.error = undefined;
+      return token;
     },
 
     // クライアントに返すセッションにはアクセストークンを含めない（サーバー側のみで保持）
