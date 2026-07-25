@@ -32,7 +32,7 @@ Google Drive の「アプリで開く」から `.md` ファイルを受け取り
 
 ### docs フォルダ管理
 
-- **各ステップ完了後、必ず対応する `docs/step-XX-*.md` を作成または更新する**
+- **各ステップ完了後、必ず対応する `docs/ios/step-XX-*.md` を作成または更新する**
 - そのステップで学んだこと・実施したこと・確認ポイントを残す（将来の自分や他の人が読んで再現できる粒度で）
 
 ### 機能スコープの厳守
@@ -83,19 +83,19 @@ MinimalMarkdownViewer/
 
 | ステップ | ドキュメント | 内容 | 状態 |
 |---------|------------|------|------|
-| Step 00 | [docs/step-00-xcode-install.md](./docs/step-00-xcode-install.md) | Xcode インストール（約 15GB） | 完了 ✓ |
-| Step 01 | docs/step-01-apple-id-setup.md | Apple ID を Xcode に登録・署名設定 | 完了 ✓ |
-| Step 02 | [docs/step-02-xcode-project.md](./docs/step-02-xcode-project.md) | Xcode プロジェクト作成 | 完了 ✓ |
-| Step 03 | [docs/step-03-info-plist.md](./docs/step-03-info-plist.md) | Document Types / UTI 設定 | 完了 ✓ |
-| Step 04 | [docs/step-04-spm-swift-markdown.md](./docs/step-04-spm-swift-markdown.md) | swift-markdown-ui パッケージ追加 | 完了 ✓ |
-| Step 05 | [docs/step-05-viewmodel.md](./docs/step-05-viewmodel.md) | DocumentViewModel 実装 | 完了 ✓ |
-| Step 06 | [docs/step-06-markdown-view.md](./docs/step-06-markdown-view.md) | MarkdownView 実装 | 完了 ✓ |
-| Step 07 | [docs/step-07-app-entry.md](./docs/step-07-app-entry.md) | MDViewerApp の onOpenURL 実装 | 完了 ✓ |
-| Step 07b | [docs/step-07b-unit-tests.md](./docs/step-07b-unit-tests.md) | DocumentViewModel ユニットテスト | 完了 ✓ |
-| Step 08 | [docs/step-08-simulator-test.md](./docs/step-08-simulator-test.md) | シミュレーターでのテスト | 完了 ✓ |
-| Step 09 | [docs/step-09-device-install.md](./docs/step-09-device-install.md) | 実機インストール（無料アカウント） | 完了 ✓ |
-| Step 10 | [docs/step-10-google-drive-test.md](./docs/step-10-google-drive-test.md) | Google Drive との動作確認 | 完了 ✓ |
-| Step 11 | docs/step-11-appstore.md | (任意) App Store 申請 | 未着手 |
+| Step 00 | [docs/ios/step-00-xcode-install.md](./docs/ios/step-00-xcode-install.md) | Xcode インストール（約 15GB） | 完了 ✓ |
+| Step 01 | docs/ios/step-01-apple-id-setup.md | Apple ID を Xcode に登録・署名設定 | 完了 ✓ |
+| Step 02 | [docs/ios/step-02-xcode-project.md](./docs/ios/step-02-xcode-project.md) | Xcode プロジェクト作成 | 完了 ✓ |
+| Step 03 | [docs/ios/step-03-info-plist.md](./docs/ios/step-03-info-plist.md) | Document Types / UTI 設定 | 完了 ✓ |
+| Step 04 | [docs/ios/step-04-spm-swift-markdown.md](./docs/ios/step-04-spm-swift-markdown.md) | swift-markdown-ui パッケージ追加 | 完了 ✓ |
+| Step 05 | [docs/ios/step-05-viewmodel.md](./docs/ios/step-05-viewmodel.md) | DocumentViewModel 実装 | 完了 ✓ |
+| Step 06 | [docs/ios/step-06-markdown-view.md](./docs/ios/step-06-markdown-view.md) | MarkdownView 実装 | 完了 ✓ |
+| Step 07 | [docs/ios/step-07-app-entry.md](./docs/ios/step-07-app-entry.md) | MDViewerApp の onOpenURL 実装 | 完了 ✓ |
+| Step 07b | [docs/ios/step-07b-unit-tests.md](./docs/ios/step-07b-unit-tests.md) | DocumentViewModel ユニットテスト | 完了 ✓ |
+| Step 08 | [docs/ios/step-08-simulator-test.md](./docs/ios/step-08-simulator-test.md) | シミュレーターでのテスト | 完了 ✓ |
+| Step 09 | [docs/ios/step-09-device-install.md](./docs/ios/step-09-device-install.md) | 実機インストール（無料アカウント） | 完了 ✓ |
+| Step 10 | [docs/ios/step-10-google-drive-test.md](./docs/ios/step-10-google-drive-test.md) | Google Drive との動作確認 | 完了 ✓ |
+| Step 11 | docs/ios/step-11-appstore.md | (任意) App Store 申請 | 未着手 |
 
 ステップ完了時にこのテーブルの「状態」を `完了 ✓` に更新すること。
 
@@ -103,7 +103,7 @@ MinimalMarkdownViewer/
 
 ## docs フォルダ規約
 
-`docs/step-XX-*.md` の構成テンプレート:
+`docs/ios/step-XX-*.md` の構成テンプレート:
 
 ```markdown
 # Step XX: タイトル
