@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Image from "next/image";
 import { auth, signIn, signOut } from "@/auth";
 import FileBrowser from "@/components/FileBrowser";
 import styles from "./page.module.css";
@@ -39,6 +40,14 @@ export default async function Home() {
   return (
     <div className={styles.app}>
       <header className={styles.header}>
+        <Image
+          src="/logo.png"
+          alt=""
+          width={24}
+          height={24}
+          className={styles.logo}
+          priority
+        />
         <span className={styles.appName}>Minimal Markdown Viewer</span>
         <span className={styles.spacer} />
         <span className={styles.userEmail}>{session.user?.email}</span>

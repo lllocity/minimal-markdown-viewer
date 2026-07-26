@@ -65,6 +65,12 @@
   border-bottom: 1px solid rgba(128, 128, 128, 0.25);
 }
 
+.logo {
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: block;
+}
+
 .appName {
   font-weight: 600;
 }
