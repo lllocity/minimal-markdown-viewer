@@ -27,6 +27,14 @@ export class DriveApiError extends Error {
   }
 }
 
+// 本文が UTF-8 として読めなかったとき（iOS 版と同じく UTF-8 のみ対応）
+export class DecodeError extends Error {
+  constructor() {
+    super("Content is not valid UTF-8");
+    this.name = "DecodeError";
+  }
+}
+
 // パンくず 1 要素（root からのフォルダ経路）
 export interface FolderCrumb {
   id: string;
@@ -149,4 +157,40 @@ export async function getFolderPath(
   }
 
   return [ROOT_CRUMB, ...crumbs];
+}
+
+// ファイル本文の取得結果
+export interface DriveFileContent {
+  name: string;
+  content: string;
+}
+
+/** バイト列を UTF-8 として厳密にデコードする。壊れていれば DecodeError */
+export function decodeUtf8(buffer: ArrayBuffer): string {
+  try {
+    return new TextDecoder("utf-8", { fatal: true }).decode(buffer);
+  } catch {
+    throw new DecodeError();
+  }
+}
+
+/**
+ * 指定ファイルの名前と本文（生 Markdown）を取得する。
+ * 本文は alt=media で生バイトを受け取り、UTF-8 として解釈する。
+ */
+export async function getFileContent(
+  accessToken: string,
+  fileId: string,
+): Promise<DriveFileContent> {
+  const [meta, res] = await Promise.all([
+    getFileMeta(accessToken, fileId),
+    fetch(`${DRIVE_FILES_URL}/${fileId}?alt=media`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }),
+  ]);
+
+  if (!res.ok) throw new DriveApiError(res.status);
+
+  const content = decodeUtf8(await res.arrayBuffer());
+  return { name: meta.name, content };
 }

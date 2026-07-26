@@ -78,14 +78,6 @@
   background: rgba(128, 128, 128, 0.08);
 }
 
-.file {
-  cursor: default;
-}
-
-.file:hover {
-  background: none;
-}
-
 .icon {
   flex: none;
   font-size: 1.1rem;
