@@ -98,7 +98,9 @@ export async function listFolder(
   const params = new URLSearchParams({
     q: `'${folderId}' in parents and trashed=false`,
     fields: "files(id,name,mimeType,modifiedTime)",
-    orderBy: "folder,name",
+    // フォルダを先頭にまとめ、各グループ内は更新の新しい順（降順）。
+    // 一番よく使う「新しいものから順」をデフォルトにする。並び替えは Drive API に委譲。
+    orderBy: "folder,modifiedTime desc",
     pageSize: "1000",
     spaces: "drive",
   });
