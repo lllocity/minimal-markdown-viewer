@@ -29,6 +29,9 @@ Google Drive 上の `.md` ファイルを、Markdown としてレンダリング
 | 言語 / 基盤 | Swift + SwiftUI | TypeScript + Next.js 16 |
 | 配布 / 公開 | 実機 / TestFlight（App Store 申請は任意） | Vercel で公開中 |
 
+> 📌 **今後の方針**: この機能差異は暫定的なもの。**将来的に iOS 版を Web 版に寄せる**
+> （iOS 版にも Google ログイン・Drive ブラウズ等を取り込む）ことで解消していく想定。
+
 ## 機能
 
 ### iOS 版
