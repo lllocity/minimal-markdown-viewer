@@ -135,4 +135,4 @@ MinimalMarkdownViewer/
 - Apple ID 登録済み
 - Xcode プロジェクト作成済み（`Minimal Markdown Viewer.xcodeproj`）
 - **iOS 版は全ステップ完了 🎉** （任意: Step 11 App Store 申請）
-- **Web 版（`web/`・Next.js 16）を開発中。** ステップ一覧と残タスクは [docs/web/ROADMAP.md](./docs/web/ROADMAP.md) を参照（W01〜W07 完了 / 残: W08 デプロイ・W09 ドキュメント統合・W10 フォルダブックマーク）。別セッションで再開するときはまずこのロードマップを見ること。
+- **Web 版（`web/`・Next.js 16）を開発中。** ステップ一覧と残タスクは [docs/web/ROADMAP.md](./docs/web/ROADMAP.md) を参照（W01〜W08 完了・本番公開中 https://minimal-markdown-viewer-seven.vercel.app / 残: W09 ドキュメント統合・W10 フォルダブックマーク）。別セッションで再開するときはまずこのロードマップを見ること。

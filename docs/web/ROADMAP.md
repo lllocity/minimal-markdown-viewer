@@ -17,13 +17,13 @@ Web 版（`web/` 配下・Next.js 16）の開発ステップ一覧と残タス�
 | W05 | Markdown ファイル表示（ビューア完成） | [step-w05-markdown-viewer.md](./step-w05-markdown-viewer.md) | 完了 ✓ |
 | W06 | ロジック層テスト（Vitest） | [step-w06-logic-tests.md](./step-w06-logic-tests.md) | 完了 ✓ |
 | W07 | アイコン / OGP / メタデータ整備 | [step-w07-icons-ogp.md](./step-w07-icons-ogp.md) | 完了 ✓ |
-| W08 | Vercel デプロイ | （未作成） | 未着手 |
+| W08 | Vercel デプロイ | [step-w08-vercel-deploy.md](./step-w08-vercel-deploy.md) | 完了 ✓ |
 | W09 | ドキュメント統合（README/SPEC を iOS版・Web版で統合） | （未作成） | 未着手 |
 | W10 | フォルダのブックマーク機能 | （未作成） | 未着手 |
 
 ## 残タスクの詳細
 
-### W08: Vercel デプロイ
+### W08: Vercel デプロイ ✓（完了 / 本番 URL: https://minimal-markdown-viewer-seven.vercel.app ）
 - `web/` を Vercel にデプロイする。
 - 環境変数を Vercel に設定: `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` / `AUTH_SECRET` / `AUTH_URL`（本番ドメイン）。
 - **`AUTH_URL` を本番ドメインにすると、OGP 画像の絶対 URL（W07 で `metadataBase = AUTH_URL` 基準に実装済み）も自動で本番ドメインに切り替わる。**
