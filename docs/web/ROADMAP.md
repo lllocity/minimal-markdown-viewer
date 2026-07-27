@@ -18,7 +18,7 @@ Web 版（`web/` 配下・Next.js 16）の開発ステップ一覧と残タス�
 | W06 | ロジック層テスト（Vitest） | [step-w06-logic-tests.md](./step-w06-logic-tests.md) | 完了 ✓ |
 | W07 | アイコン / OGP / メタデータ整備 | [step-w07-icons-ogp.md](./step-w07-icons-ogp.md) | 完了 ✓ |
 | W08 | Vercel デプロイ | [step-w08-vercel-deploy.md](./step-w08-vercel-deploy.md) | 完了 ✓ |
-| W09 | ドキュメント統合（README/SPEC を iOS版・Web版で統合） | （未作成） | 未着手 |
+| W09 | ドキュメント統合（README/SPEC を iOS版・Web版で統合） | [step-w09-doc-integration.md](./step-w09-doc-integration.md) | 完了 ✓ |
 | W10 | フォルダのブックマーク機能 | （未作成） | 未着手 |
 
 ## 残タスクの詳細
@@ -30,10 +30,11 @@ Web 版（`web/` 配下・Next.js 16）の開発ステップ一覧と残タス�
 - Google Cloud 側の OAuth リダイレクト URI に本番ドメインの `/api/auth/callback/google` を追加する。
 - 完了後 `docs/web/step-w08-*.md` を作成。
 
-### W09: ドキュメント統合
-- 現状 `README.md` / `SPEC.md` は iOS 版のみを記述。Web 版も含めた内容に統合する。
-- iOS 版・Web 版の設計思想（「AI が書く→Drive→読む」）は共通なので、共通部分＋各プラットフォーム固有部分の構成に整理する。
-- 完了後 `docs/web/step-w09-*.md` を作成。
+### W09: ドキュメント統合 ✓（完了）
+- `README.md` を「iOS/Web の2実装」構成に（比較表・公開URL・機能/技術スタック併記）。
+- `SPEC.md` を「共通 / iOS版 / Web版」の3部構成に再編。
+- 共通の思想＋プラットフォーム固有の手段（iOS は認証/ブラウズ不要、Web は IN）を明記。
+- 詳細: [step-w09-doc-integration.md](./step-w09-doc-integration.md)
 
 ### W10: フォルダのブックマーク機能
 - Drive のフォルダをブックマーク（お気に入り）登録し、素早くアクセスできるようにする。
