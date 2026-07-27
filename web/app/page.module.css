@@ -39,6 +39,9 @@
 }
 
 .buttonSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0.5rem 1.1rem;
   font-size: 0.9rem;
   border: 1px solid currentColor;
@@ -51,6 +54,11 @@
 
 .buttonSecondary:hover {
   opacity: 1;
+}
+
+.logoutIcon {
+  display: block;
+  flex-shrink: 0;
 }
 
 .app {
@@ -73,6 +81,7 @@
 
 .appName {
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .spacer {
@@ -86,4 +95,19 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 40vw;
+}
+
+/* モバイル: ロゴのみ + ログアウトはアイコンだけにしてスッキリさせる */
+@media (max-width: 640px) {
+  .appName,
+  .userEmail,
+  .buttonLabel {
+    display: none;
+  }
+
+  .buttonSecondary {
+    /* アイコンだけの正方形ボタンにする */
+    gap: 0;
+    padding: 0.5rem;
+  }
 }
