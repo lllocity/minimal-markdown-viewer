@@ -34,6 +34,7 @@ cd web && npm install -D vitest
 | `isMarkdown` | `.md`/`.markdown`（大文字含む）は true、`text/markdown`系 mimeType も true、`.mdx`・`my.md.txt`・画像等は false |
 | `toEntry` | フォルダ→folder、Markdown→markdown、対象外→null |
 | `toEntries` | フォルダと Markdown だけ残し順序保持、空は空 |
+| `sortEntries` | フォルダを先頭に名前順、Markdown は更新降順。日本語名の自然順、`modifiedTime` 未設定は末尾、空は空 |
 | `decodeUtf8` | 正常 UTF-8（日本語・絵文字）を復元、空は空、壊れたバイト列は `DecodeError` |
 
 > ネットワークを叩く `listFolder` / `getFolderPath` / `getFileContent` は、判定部分を

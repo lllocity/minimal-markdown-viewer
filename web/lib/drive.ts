@@ -88,6 +88,25 @@ export function toEntries(files: DriveFile[]): DriveEntry[] {
 }
 
 /**
+ * 表示用に並べ替える。
+ * - フォルダを先頭にまとめ、フォルダ同士は名前順（あいうえお/A→Z）。
+ * - Markdown ファイルはその後ろに、更新の新しい順（降順）。
+ * Drive API の orderBy はフォルダとファイルへ同じキーしか適用できず
+ * 「フォルダは名前・ファイルは更新順」を分けられないため、ここで並べ替える。
+ */
+export function sortEntries(entries: DriveEntry[]): DriveEntry[] {
+  const folders = entries.filter((e) => e.type === "folder");
+  const files = entries.filter((e) => e.type !== "folder");
+
+  folders.sort((a, b) => a.name.localeCompare(b.name, "ja"));
+  // modifiedTime は ISO 8601 文字列なので辞書順比較で新旧を判定できる。
+  // 未設定（undefined）は空文字扱いで末尾に回す。降順なので b と a を反転して比較。
+  files.sort((a, b) => (b.modifiedTime ?? "").localeCompare(a.modifiedTime ?? ""));
+
+  return [...folders, ...files];
+}
+
+/**
  * 指定フォルダ直下のサブフォルダと Markdown 一覧を取得する。
  * folderId は "root"（マイドライブ）または実際のフォルダ ID。
  */
@@ -98,9 +117,9 @@ export async function listFolder(
   const params = new URLSearchParams({
     q: `'${folderId}' in parents and trashed=false`,
     fields: "files(id,name,mimeType,modifiedTime)",
-    // フォルダを先頭にまとめ、各グループ内は更新の新しい順（降順）。
-    // 一番よく使う「新しいものから順」をデフォルトにする。並び替えは Drive API に委譲。
-    orderBy: "folder,modifiedTime desc",
+    // 並べ替えは取得後に sortEntries で行う（フォルダ=名前順・ファイル=更新降順）。
+    // Drive 側の orderBy はグループ別キーを指定できないため、ここでは名前順で取っておく。
+    orderBy: "folder,name",
     pageSize: "1000",
     spaces: "drive",
   });
@@ -112,7 +131,7 @@ export async function listFolder(
   if (!res.ok) throw new DriveApiError(res.status);
 
   const data = (await res.json()) as { files?: DriveFile[] };
-  return toEntries(data.files ?? []);
+  return sortEntries(toEntries(data.files ?? []));
 }
 
 // 1 ファイル/フォルダのメタ情報（親を辿るのに使う）

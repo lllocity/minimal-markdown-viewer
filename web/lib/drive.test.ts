@@ -4,9 +4,11 @@ import {
   isMarkdown,
   toEntry,
   toEntries,
+  sortEntries,
   decodeUtf8,
   DecodeError,
   FOLDER_MIME,
+  type DriveEntry,
   type DriveFile,
 } from "./drive";
 
@@ -109,6 +111,58 @@ describe("toEntries", () => {
 
   it("空配列は空配列", () => {
     expect(toEntries([])).toEqual([]);
+  });
+});
+
+describe("sortEntries", () => {
+  const folder = (id: string, name: string, t?: string): DriveEntry => ({
+    id,
+    name,
+    type: "folder",
+    modifiedTime: t,
+  });
+  const md = (id: string, name: string, t?: string): DriveEntry => ({
+    id,
+    name,
+    type: "markdown",
+    modifiedTime: t,
+  });
+
+  it("フォルダを先頭に、フォルダは名前順・ファイルは更新降順で並べる", () => {
+    const entries: DriveEntry[] = [
+      md("m1", "old.md", "2026-01-01T00:00:00Z"),
+      folder("f1", "zebra"),
+      md("m2", "new.md", "2026-07-01T00:00:00Z"),
+      folder("f2", "apple"),
+    ];
+    const sorted = sortEntries(entries);
+    // フォルダ(名前順) → ファイル(更新の新しい順)
+    expect(sorted.map((e) => e.id)).toEqual(["f2", "f1", "m2", "m1"]);
+  });
+
+  it("フォルダの名前順は日本語も自然に並ぶ", () => {
+    const entries: DriveEntry[] = [
+      folder("f1", "さくら"),
+      folder("f2", "あさがお"),
+      folder("f3", "かえで"),
+    ];
+    expect(sortEntries(entries).map((e) => e.name)).toEqual([
+      "あさがお",
+      "かえで",
+      "さくら",
+    ]);
+  });
+
+  it("modifiedTime 未設定のファイルは末尾に回る", () => {
+    const entries: DriveEntry[] = [
+      md("m1", "notime.md"),
+      md("m2", "dated.md", "2026-05-01T00:00:00Z"),
+    ];
+    expect(sortEntries(entries).map((e) => e.id)).toEqual(["m2", "m1"]);
+  });
+
+  it("空配列は空配列（元配列は破壊しない前提で新規配列を返す）", () => {
+    expect(sortEntries([])).toEqual([]);
   });
 });
 
