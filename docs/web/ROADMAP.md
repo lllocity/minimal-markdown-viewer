@@ -19,7 +19,7 @@ Web 版（`web/` 配下・Next.js 16）の開発ステップ一覧と残タス�
 | W07 | アイコン / OGP / メタデータ整備 | [step-w07-icons-ogp.md](./step-w07-icons-ogp.md) | 完了 ✓ |
 | W08 | Vercel デプロイ | [step-w08-vercel-deploy.md](./step-w08-vercel-deploy.md) | 完了 ✓ |
 | W09 | ドキュメント統合（README/SPEC を iOS版・Web版で統合） | [step-w09-doc-integration.md](./step-w09-doc-integration.md) | 完了 ✓ |
-| W10 | フォルダのブックマーク機能 | （未作成） | 未着手 |
+| W10 | フォルダのブックマーク機能 | [step-w10-bookmarks.md](./step-w10-bookmarks.md) | 完了 ✓ |
 
 ## 残タスクの詳細
 
@@ -36,7 +36,7 @@ Web 版（`web/` 配下・Next.js 16）の開発ステップ一覧と残タス�
 - 共通の思想＋プラットフォーム固有の手段（iOS は認証/ブラウズ不要、Web は IN）を明記。
 - 詳細: [step-w09-doc-integration.md](./step-w09-doc-integration.md)
 
-### W10: フォルダのブックマーク機能
+### W10: フォルダのブックマーク機能 ✓（完了 / localStorage・PC/モバイル共通の★ドロップダウン）
 - Drive のフォルダをブックマーク（お気に入り）登録し、素早くアクセスできるようにする。
 - **バックエンド（DB）にデータを蓄積する仕組みは無いので、ブラウザの localStorage に保存する。**
 - 想定要素:

@@ -5,19 +5,27 @@
   padding: 0 1rem 2rem;
 }
 
-/* スクロールしても上部に固定（長い一覧でも現在地が常に見える） */
-.breadcrumb {
+/* スクロールしても上部に固定（長い一覧でも現在地・ブックマークが常に使える） */
+.topBar {
   position: sticky;
   top: 0;
   z-index: 10;
   display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.25rem;
+  background: var(--background);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.breadcrumb {
+  flex: 1;
+  min-width: 0;
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.25rem;
-  padding: 0.75rem 0.25rem;
   font-size: 0.95rem;
-  background: var(--background);
-  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
 }
 
 .crumbItem {
