@@ -66,6 +66,7 @@
 | lint: `set-state-in-effect` | `useEffect`＋`setState` で初期化していた。`useState(loadBookmarks)` の遅延初期化に変更 |
 | ハイドレーション不一致 | 初期描画で localStorage 依存の DOM を出すと発生。パネルは閉じた状態から始め list 非依存にする |
 | リロードで消える | `saveBookmarks` の呼び忘れ。追加/削除は必ず `persist`（setState＋save）経由にする |
+| ファイル閲覧中に★で別フォルダへ飛ぶと古い一覧が一瞬チラ見え | ブックマーク移動は `router.push` 直で `loading` が立たず、URL 変更より古い entries の描画が一拍早いため。`FileBrowser` に「取得済み entries の所属フォルダ」`loadedFolderId` を持たせ、`isStale = loadedFolderId !== folderId` の間は一覧を出さずローディング表示にする（成功/失敗とも `finally` で `loadedFolderId=folderId` を更新）。ブックマークだけでなく戻る/進む・直リンクにも効く |
 
 ## 学んだこと・メモ
 - 「判定・変換を純粋関数に切り出し→そこをテスト、副作用（localStorage）は薄いラッパ」の型は

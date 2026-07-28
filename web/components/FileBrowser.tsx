@@ -20,6 +20,10 @@ export default function FileBrowser() {
   const [path, setPath] = useState<FolderCrumb[]>([ROOT_CRUMB]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // いま表示している entries / error が「どのフォルダのものか」。
+  // URL の folderId と食い違う間は古いデータなので一覧を出さずローディング表示にする
+  // （例: ファイル閲覧中にブックマークで別フォルダへ飛んだ瞬間の“古い一覧チラ見え”を防ぐ）。
+  const [loadedFolderId, setLoadedFolderId] = useState<string | null>(null);
 
   // URL（folderId）が真実。変わるたびに中身とパンくずを取得する
   useEffect(() => {
@@ -54,7 +58,11 @@ export default function FileBrowser() {
           setEntries([]);
         }
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+          // 成功・失敗いずれでも「今の表示は folderId のもの」になった
+          setLoadedFolderId(folderId);
+        }
       }
     })();
     return () => {
@@ -82,6 +90,10 @@ export default function FileBrowser() {
     );
   }
 
+  // 取得済みデータが今の folderId と食い違う間は「古い」→ 一覧を出さずローディング扱い
+  const isStale = loadedFolderId !== folderId;
+  const showLoading = loading || isStale;
+
   return (
     <div className={styles.browser}>
       {/* パンくずリスト */}
@@ -103,16 +115,16 @@ export default function FileBrowser() {
         ))}
       </nav>
 
-      {loading && <p className={styles.status}>読み込み中…</p>}
-      {!loading && error && <p className={styles.error}>{error}</p>}
+      {showLoading && <p className={styles.status}>読み込み中…</p>}
+      {!showLoading && error && <p className={styles.error}>{error}</p>}
 
-      {!loading && !error && entries.length === 0 && (
+      {!showLoading && !error && entries.length === 0 && (
         <p className={styles.status}>
           このフォルダにはフォルダ・Markdown がありません。
         </p>
       )}
 
-      {!loading && !error && entries.length > 0 && (
+      {!showLoading && !error && entries.length > 0 && (
         <ul className={styles.list}>
           {entries.map((entry) =>
             entry.type === "folder" ? (
