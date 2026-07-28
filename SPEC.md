@@ -153,7 +153,7 @@ Google でログインし、自分の Drive のフォルダ／Markdown を辿っ
 | フレームワーク | Next.js 16（App Router / Turbopack） |
 | 認証 | Auth.js v5（next-auth）サーバーサイド Google OAuth |
 | スコープ | `drive.readonly`（読み取り専用） |
-| Markdown | `react-markdown` + `remark-gfm`（GFM 対応。構文ハイライトは意図的に未導入） |
+| Markdown | `react-markdown` + `remark-gfm` + `remark-breaks`（GFM 対応。単一改行も改行として表示。構文ハイライトは意図的に未導入） |
 | スタイル | CSS Modules（Tailwind 不使用） |
 | テスト | Vitest |
 | ホスティング | Vercel（GitHub 連携で `main` push → 自動デプロイ） |
@@ -167,7 +167,9 @@ Google でログインし、自分の Drive のフォルダ／Markdown を辿っ
 - Google ログイン（Auth.js v5、`drive.readonly`）
 - Drive のフォルダ / Markdown ブラウズ（パンくず・上部バーはスクロール追従で固定）
 - パーマリンク `?folder=<id>&file=<id>` による直接オープン
-- Markdown レンダリング（GFM: テーブル・チェックリスト等）
+- Markdown レンダリング（GFM: テーブル・チェックリスト等）。単一改行も改行として表示（`remark-breaks`）。
+  ※ iOS 版（swift-markdown-ui）は現状 CommonMark 準拠で単一改行はスペース。改行挙動の統一は
+  「iOS 版を Web 版に寄せる」方針（第1部3）の中で対応する。
 - 並び順: フォルダは名前順、Markdown ファイルは更新の新しい順
 - アプリアイコン / ファビコン / OGP 画像（SNS 共有カード）
 - レスポンシブなヘッダー（モバイルはロゴ＋ログアウトアイコンのみ）
