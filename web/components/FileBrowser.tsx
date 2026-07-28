@@ -4,20 +4,13 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { DriveEntry, FolderCrumb } from "@/lib/drive";
 import { ROOT_CRUMB } from "@/lib/drive";
+import { hrefFor } from "@/lib/nav";
+import { useBrowse } from "./BrowseProvider";
 import FileView from "./FileView";
-import BookmarkMenu from "./BookmarkMenu";
 import styles from "./FileBrowser.module.css";
 
-// 現在フォルダ（＋選択ファイル）を URL クエリへ。root かつファイル無しは素の "/"
-function hrefFor(folderId: string, fileId?: string): string {
-  const params = new URLSearchParams();
-  if (folderId !== "root") params.set("folder", folderId);
-  if (fileId) params.set("file", fileId);
-  const qs = params.toString();
-  return qs ? `/?${qs}` : "/";
-}
-
 export default function FileBrowser() {
+  const { setCurrentFolder } = useBrowse();
   const router = useRouter();
   const searchParams = useSearchParams();
   const folderId = searchParams.get("folder") || "root";
@@ -52,6 +45,8 @@ export default function FileBrowser() {
           if (cancelled) return;
           setEntries(data.entries);
           setPath(data.path);
+          // 現在フォルダ（＝パンくず末尾）をヘッダーのブックマークと共有
+          setCurrentFolder(data.path[data.path.length - 1] ?? ROOT_CRUMB);
         }
       } catch {
         if (!cancelled) {
@@ -65,7 +60,7 @@ export default function FileBrowser() {
     return () => {
       cancelled = true;
     };
-  }, [folderId]);
+  }, [folderId, setCurrentFolder]);
 
   // フォルダを移動（読み込み表示はここで立てる）
   function goToFolder(targetId: string) {
@@ -89,30 +84,24 @@ export default function FileBrowser() {
 
   return (
     <div className={styles.browser}>
-      {/* 上部バー: パンくず（左）＋ ブックマーク（右） */}
-      <div className={styles.topBar}>
-        <nav className={styles.breadcrumb} aria-label="フォルダ階層">
-          {path.map((crumb, i) => (
-            <span key={crumb.id} className={styles.crumbItem}>
-              {i > 0 && <span className={styles.sep}>/</span>}
-              {i < path.length - 1 ? (
-                <button
-                  className={styles.crumbLink}
-                  onClick={() => goToFolder(crumb.id)}
-                >
-                  {crumb.name}
-                </button>
-              ) : (
-                <span className={styles.crumbCurrent}>{crumb.name}</span>
-              )}
-            </span>
-          ))}
-        </nav>
-        <BookmarkMenu
-          current={path[path.length - 1]}
-          onNavigate={goToFolder}
-        />
-      </div>
+      {/* パンくずリスト */}
+      <nav className={styles.breadcrumb} aria-label="フォルダ階層">
+        {path.map((crumb, i) => (
+          <span key={crumb.id} className={styles.crumbItem}>
+            {i > 0 && <span className={styles.sep}>/</span>}
+            {i < path.length - 1 ? (
+              <button
+                className={styles.crumbLink}
+                onClick={() => goToFolder(crumb.id)}
+              >
+                {crumb.name}
+              </button>
+            ) : (
+              <span className={styles.crumbCurrent}>{crumb.name}</span>
+            )}
+          </span>
+        ))}
+      </nav>
 
       {loading && <p className={styles.status}>読み込み中…</p>}
       {!loading && error && <p className={styles.error}>{error}</p>}

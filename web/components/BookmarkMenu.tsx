@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { Bookmark } from "@/lib/bookmarks";
 import {
   loadBookmarks,
@@ -9,16 +10,14 @@ import {
   removeBookmark,
   isBookmarked,
 } from "@/lib/bookmarks";
+import { hrefFor } from "@/lib/nav";
+import { useBrowse } from "./BrowseProvider";
 import styles from "./BookmarkMenu.module.css";
 
-interface Props {
-  // 現在フォルダ（パンくずの末尾）。＋で登録/解除する対象。
-  current: { id: string; name: string };
-  // ブックマークを選んだときの遷移。
-  onNavigate: (folderId: string) => void;
-}
-
-export default function BookmarkMenu({ current, onNavigate }: Props) {
+export default function BookmarkMenu() {
+  const router = useRouter();
+  // 現在フォルダ（パンくず末尾）は BrowseProvider 経由で FileBrowser から共有される
+  const { currentFolder: current } = useBrowse();
   // 初回描画時に localStorage から読み込む（遅延初期化・SSR 時は空）。
   // パネルは閉じた状態から始まり list に依存する DOM を出さないので、
   // サーバー([])とクライアント(実データ)で初期描画が食い違わない。
@@ -104,7 +103,7 @@ export default function BookmarkMenu({ current, onNavigate }: Props) {
                     className={styles.itemName}
                     onClick={() => {
                       setOpen(false);
-                      onNavigate(bm.id);
+                      router.push(hrefFor(bm.id));
                     }}
                   >
                     <span className={styles.folderIcon}>📁</span>
