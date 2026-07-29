@@ -76,6 +76,9 @@ export default function FileView({
   }, [content]);
 
   const showToc = !loading && !error && content !== "" && headings.length > 0;
+  // 読み込み中から右カラムの幅を確保しておき、目次が出た瞬間に本文が左へカクッと
+  // ずれないようにする（エラー / 見出しなしのときだけカラムを畳む）。
+  const reserveTocColumn = loading || showToc;
 
   return (
     <div className={styles.layout}>
@@ -99,10 +102,10 @@ export default function FileView({
         )}
       </div>
 
-      {/* PC のみ: 右カラムに目次（モバイルでは CSS で非表示） */}
-      {showToc && (
+      {/* PC のみ: 右カラム。読み込み中は空のまま幅だけ確保（モバイルは CSS で非表示） */}
+      {reserveTocColumn && (
         <aside className={styles.tocCol}>
-          <Toc headings={headings} />
+          {showToc && <Toc headings={headings} />}
         </aside>
       )}
     </div>
