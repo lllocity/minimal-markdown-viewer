@@ -20,6 +20,7 @@ Web 版（`web/` 配下・Next.js 16）の開発ステップ一覧と残タス�
 | W08 | Vercel デプロイ | [step-w08-vercel-deploy.md](./step-w08-vercel-deploy.md) | 完了 ✓ |
 | W09 | ドキュメント統合（README/SPEC を iOS版・Web版で統合） | [step-w09-doc-integration.md](./step-w09-doc-integration.md) | 完了 ✓ |
 | W10 | フォルダのブックマーク機能 | [step-w10-bookmarks.md](./step-w10-bookmarks.md) | 完了 ✓ |
+| W11 | 目次（TOC）機能（PC 右カラム） | [step-w11-toc.md](./step-w11-toc.md) | 完了 ✓ |
 
 ## 残タスクの詳細
 
@@ -46,6 +47,10 @@ Web 版（`web/` 配下・Next.js 16）の開発ステップ一覧と残タス�
   - localStorage 読み書きは純粋関数に切り出し、Vitest でテスト（CLAUDE.md「ロジック層は必ずテスト」に従う。localStorage はモック or jsdom 環境）。
 - スコープ注意: SPEC.md の「シンプルさへのコミットメント」に照らし、ブックマークの範囲は「フォルダの記憶とショートカット」に留める（同期・共有・タグ付け等には広げない）。
 - 完了後 `docs/web/step-w10-*.md` を作成。
+
+### W11: 目次（TOC）機能 ✓（完了 / PC 右カラム・モバイルは目次なし）
+- Markdown 表示時に見出し一覧を出し、クリックでアンカー移動・現在地ハイライト。
+- 実装は「rehype-slug で id 付与 → 描画後の DOM から見出しを読む」単一の真実方式。詳細は step-w11。
 
 ## 完了の記録方法
 - ステップ完了時にこの表の「状態」を `完了 ✓` に更新し、対応する `step-wXX-*.md` を作成/更新する。
